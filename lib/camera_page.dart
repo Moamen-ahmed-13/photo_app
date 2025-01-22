@@ -105,16 +105,27 @@ class _CameraPageState extends State<CameraPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 20),
-            if (_image != null)
-              Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: Image.file(
-                  _image!,
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
+            _image != null
+                ? Container(
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                    child: Image.file(
+                      _image!,
+                      fit: BoxFit.fitHeight,
+                    ),
+                  )
+                : Container(
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          'assets/Animation.gif',
+                        ),
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ),
+                  ),
           ],
         ),
       ),
@@ -154,7 +165,7 @@ class _CameraPageState extends State<CameraPage> {
                             ),
                           ),
                         )
-                      : const Icon(Icons.drive_folder_upload_rounded,
+                      : const Icon(Icons.cloud_upload,
                           size: 30, color: Colors.black87),
                 ),
               ],
